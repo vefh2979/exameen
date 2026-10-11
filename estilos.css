@@ -1,0 +1,109 @@
+/* Estilos con temática de Grey's Anatomy */
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+
+:root {
+    --azul-quirurgico: #004b6e;
+    --azul-azteca: #0077a3;
+    --azul-claro: #e0f2f1;
+    --fondo-gris: #f4f7f6;
+    --texto-oscuro: #2c3e50;
+    --blanco: #ffffff;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--fondo-gris);
+    color: var(--texto-oscuro);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Encabezado */
+header {
+    background-color: var(--azul-quirurgico);
+    color: var(--blanco);
+    text-align: center;
+    padding: 2.5rem 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    border-bottom: 5px solid var(--azul-azteca);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+header h2 {
+    margin-top: 0.5rem;
+    font-weight: 300;
+    font-size: 1.3rem;
+    color: #b2ebf2;
+}
+
+/* Contenido Principal */
+main {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+.intro {
+    background: var(--blanco);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-left: 6px solid var(--azul-quirurgico);
+    margin-bottom: 2rem;
+}
+
+.intro h2 {
+    color: var(--azul-quirurgico);
+    margin-top: 0;
+}
+
+/* Galería de imágenes */
+.galeria {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+}
+
+.galeria img {
+    width: 280px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 3px solid var(--blanco);
+}
+
+.galeria img:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Sección de audios */
+.audios {
+    background-color: var(--azul-claro);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.audios h3 {
+    color: var(--azul-quirurgico);
+    margin-top: 0;
+}
+
+audio {
+    margin: 0.8rem;
+    outline: none;
+    border-radius: 30px;
+}

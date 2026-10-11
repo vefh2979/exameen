@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fichas médicas</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <header>
+        <h1>🩺 Sistema de Fichas Médicas</h1>
+        <p>Registro y control de información de pacientes</p>
+    </header>
+
+    <main>
+        <section class="formulario">
+            <h2>Nueva ficha médica</h2>
+
+            <form id="formularioMedico">
+                <div class="campos">
+
+                    <div class="campo">
+                        <label for="nombre">Nombre completo *</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+
+                    <div class="campo">
+                        <label for="fechaNacimiento">Fecha de nacimiento</label>
+                        <input type="date" id="fechaNacimiento" name="fechaNacimiento">
+                    </div>
+
+                    <div class="campo">
+                        <label for="sexo">Sexo</label>
+                        <select id="sexo" name="sexo">
+                            <option value="">Seleccionar</option>
+                            <option>Femenino</option>
+                            <option>Masculino</option>
+                            <option>Otro</option>
+                            <option>Prefiero no indicarlo</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono">
+                    </div>
+
+                    <div class="campo">
+                        <label for="sangre">Tipo de sangre</label>
+                        <select id="sangre" name="sangre">
+                            <option value="">No registrado</option>
+                            <option>A+</option>
+                            <option>A-</option>
+                            <option>B+</option>
+                            <option>B-</option>
+                            <option>AB+</option>
+                            <option>AB-</option>
+                            <option>O+</option>
+                            <option>O-</option>
+                        </select>
+                    </div>
+
+                    <div class="campo">
+                        <label for="alergias">Alergias</label>
+                        <input type="text" id="alergias" name="alergias">
+                    </div>
+
+                    <div class="campo completo">
+                        <label for="antecedentes">Antecedentes médicos</label>
+                        <textarea id="antecedentes" name="antecedentes"></textarea>
+                    </div>
+
+                    <div class="campo completo">
+                        <label for="motivo">Motivo de consulta</label>
+                        <textarea id="motivo" name="motivo"></textarea>
+                    </div>
+
+                    <div class="campo completo">
+                        <label for="diagnostico">Diagnóstico</label>
+                        <textarea id="diagnostico" name="diagnostico"></textarea>
+                    </div>
+
+                    <div class="campo completo">
+                        <label for="tratamiento">Tratamiento</label>
+                        <textarea id="tratamiento" name="tratamiento"></textarea>
+                    </div>
+
+                </div>
+
+                <button type="submit">Registrar ficha</button>
+            </form>
+        </section>
+
+        <section class="registros">
+            <h2>Fichas registradas</h2>
+            <div id="listaPacientes">
+                <p>Aún no hay fichas registradas.</p>
+            </div>
+        </section>
+    </main>
+
+
+
+    <!-- Funcionalidad del formulario -->
+    <script>
+        const formulario = document.getElementById("formularioMedico");
+        const lista = document.getElementById("listaPacientes");
+
+        formulario.addEventListener("submit", function(evento) {
+            evento.preventDefault();
+
+            const datos = new FormData(formulario);
+            const paciente = document.createElement("article");
+            paciente.className = "paciente";
+
+            const titulo = document.createElement("h3");
+            titulo.textContent = datos.get("nombre");
+            paciente.appendChild(titulo);
+
+            const campos = [
+                ["Fecha de nacimiento", "fechaNacimiento"],
+                ["Sexo", "sexo"],
+                ["Teléfono", "telefono"],
+                ["Tipo de sangre", "sangre"],
+                ["Alergias", "alergias"],
+                ["Antecedentes médicos", "antecedentes"],
+                ["Motivo de consulta", "motivo"],
+                ["Diagnóstico", "diagnostico"],
+                ["Tratamiento", "tratamiento"]
+            ];
+
+            campos.forEach(function(campo) {
+                const valor = datos.get(campo[1]);
+
+                if (valor) {
+                    const parrafo = document.createElement("p");
+                    const etiqueta = document.createElement("strong");
+
+                    etiqueta.textContent = campo[0] + ": ";
+
+                    parrafo.appendChild(etiqueta);
+                    parrafo.appendChild(document.createTextNode(valor));
+                    paciente.appendChild(parrafo);
+                }
+            });
+
+            lista.querySelector("p")?.remove();
+            lista.prepend(paciente);
+            formulario.reset();
+        });
+    </script>
+
+</body>
+</html>
